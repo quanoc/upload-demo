@@ -1,0 +1,3 @@
+url: upload
+method: POST
+
