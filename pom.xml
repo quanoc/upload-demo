@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.quanquan.springmvc</groupId>
-    <artifactId>springMvc</artifactId>
+    <artifactId>appUpload</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>springMvc</name>
+    <name>appUpload</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -78,6 +78,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <finalName>springMvc</finalName>
+        <finalName>appUpload</finalName>
     </build>
 </project>
