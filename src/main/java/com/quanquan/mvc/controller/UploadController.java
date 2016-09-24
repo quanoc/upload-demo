@@ -35,16 +35,16 @@ public class UploadController {
 
             SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMdd");
             SimpleDateFormat sdfTime = new SimpleDateFormat("HHmmss");
-            String fileName = file.getOriginalFilename();
+            String fileName = new String(file.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8");
             String tomPath = System.getProperty("user.dir").replace("bin", "file");
             File uploadFilePath = new File(tomPath + "Upload" + File.separator + sdfDate.format(new Date())
                     + File.separator );
             log.debug("uploadFilePath:" + uploadFilePath);
+            System.out.println("FileName" +fileName);
             if ( !uploadFilePath.exists()){
                 boolean flag = uploadFilePath.mkdirs() ;//uploadFilePath 本身创建
                 System.out.println("============Create NewFilePath:[" + flag +"][" + uploadFilePath + "]=======");
             }
-
             fos = new FileOutputStream( uploadFilePath + File.separator + sdfTime.format(new Date())
                     + "-" + fileName) ;
 
