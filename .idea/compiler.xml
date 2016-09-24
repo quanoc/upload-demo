@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="appUpload" />
         <module name="uploadDemo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="appUpload" target="1.5" />
       <module name="uploadDemo" target="1.5" />
     </bytecodeTargetLevel>
   </component>
