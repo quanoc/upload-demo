@@ -51,12 +51,12 @@
 <script src="front-lib/js/jquery-1.10.1.min.js"></script>
 <script src="front-lib/js/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="front-app/js/dmuploader.min.js"></script>
-
+<script src="front-app/js/app-format.js"></script>
 
 <script type="text/javascript">
     //-- Some functions to work with our UI
     function add_log(message) {
-        var template = '<li>[' + new Date().getTime() + '] - ' + message + '</li>';
+        var template = '<li>[' + new Date().Format("yyyy-MM-dd HH:mm:ss") + '] - ' + message + '</li>';
 
         $('#debug').find('ul').prepend(template);
     }
@@ -88,7 +88,7 @@
     $('#drag-and-drop-zone').dmUploader({
 
         url: getRootPath() + '/upload',
-        dataType: 'json',
+        dataType: 'text',
         // allowedTypes: 'image/*',
         onInit: function () {
             add_log('Penguin initialized :)');

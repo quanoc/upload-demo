@@ -12,6 +12,7 @@
 
     <properties>
         <springframework.version>4.0.6.RELEASE</springframework.version>
+        <jackson.version>1.9.10</jackson.version>
     </properties>
 
     <dependencies>
@@ -31,6 +32,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${springframework.version}</version>
+        </dependency>
+        <!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <dependency>
@@ -79,5 +86,14 @@
             </plugins>
         </pluginManagement>
         <finalName>appUpload</finalName>
+        <sourceDirectory>src/main/java </sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources/conf</directory>
+            </resource>
+        </resources>
     </build>
 </project>
