@@ -1,5 +1,6 @@
 package com.quanquan.mvc.controller;
 
+import com.quanquan.util.FileOperateUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -26,22 +27,22 @@ public class UploadController {
 
     @RequestMapping(value={"/",""}, method=RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     public @ResponseBody String upload(HttpServletRequest req) throws Exception{
-        log.info("=============POST===uploadFile===========");
         FileOutputStream fos = null ;
         MultipartHttpServletRequest mreq = (MultipartHttpServletRequest)req;
         MultipartFile file = mreq.getFile("file");
         String fileName = new String(file.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8");
-        String tomcatPath = System.getProperty("user.dir").replace("bin", "file");
+
+        log.info("=============POST===uploadFile:[" + fileName + "]===========");
         try {
             SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMdd");
             SimpleDateFormat sdfTime = new SimpleDateFormat("HHmmss");
-            File uploadFilePath = new File(tomcatPath + "Upload" + File.separator + sdfDate.format(new Date())
+            init(); //init FILEDIR
+            File uploadFilePath = new File(FileOperateUtil.FILEDIR + File.separator + sdfDate.format(new Date())
                     + File.separator );
             log.info("uploadFilePath:  " + uploadFilePath);
-            log.info("fileName:  " + fileName);
             if ( !uploadFilePath.exists()){
                 boolean flag = uploadFilePath.mkdirs() ;//uploadFilePath 本身创建
-                log.info("============Create NewFilePath:[" + flag +"][" + uploadFilePath + "]=======");
+                log.info("=============CREATE-NewFilePath:[" + flag +"][" + uploadFilePath + "]=======");
             }
             fos = new FileOutputStream( uploadFilePath + File.separator + sdfTime.format(new Date())
                     + "-" + fileName) ;
@@ -58,7 +59,18 @@ public class UploadController {
     }
     @RequestMapping(value={"/",""},method=RequestMethod.GET)
     public String uploadGet(HttpServletRequest req) throws Exception{
-        System.out.println("=============GET");
+        System.out.println("=============GET================");
         return "hello";
     }
+
+
+    /**
+     * DO: init FILEDIR
+     */
+    private void init() {
+        if(FileOperateUtil.FILEDIR == null){
+            FileOperateUtil.FILEDIR = System.getProperty("user.dir").replace("bin", "file") + "Upload" ;
+        }
+    }
+
 }
