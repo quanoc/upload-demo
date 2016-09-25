@@ -43,7 +43,6 @@ public class DownloadController {
     @RequestMapping(value={"", "/"})
     public ModelAndView list(HttpServletRequest request){
         init();  //init FILEDIR
-        log.info("init FILEDIR:" + FileOperateUtil.FILEDIR);
         request.setAttribute("map", getMap());  //get fileList map
 
         /**
@@ -86,6 +85,7 @@ public class DownloadController {
         if(FileOperateUtil.FILEDIR == null){
             FileOperateUtil.FILEDIR = System.getProperty("user.dir").replace("bin", "file") + "Upload" ;
         }
+        log.info("init FILEDIR: [" + FileOperateUtil.FILEDIR + "] success");
     }
     private Map<String, String> getMap(){
         Map<String, String> map = new HashMap<String, String>();
